@@ -6,7 +6,7 @@
 /*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 16:00:59 by naadou            #+#    #+#             */
-/*   Updated: 2023/11/11 20:00:54 by naadou           ###   ########.fr       */
+/*   Updated: 2023/11/11 20:30:14 by naadou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 void	ft_print_hex_uc(int n);
 void	ft_print_hex_lc(int n);
-void	*ft_printadd(void *p);
+void	ft_printadd(void *p);
+void	ft_u_putnbr_fd(unsigned int n, int fd);
 
 #endif

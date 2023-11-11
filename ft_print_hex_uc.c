@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_hex_lc.c                                  :+:      :+:    :+:   */
+/*   ft_print_hex_uc.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 19:56:06 by naadou            #+#    #+#             */
-/*   Updated: 2023/11/11 19:59:45 by naadou           ###   ########.fr       */
+/*   Updated: 2023/11/11 20:21:48 by naadou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "/Users/naadou/Desktop/libft/libft.h"
+#include "libftprintf.h"
 
 static size_t	ft_len(int n)
 {
@@ -52,7 +53,7 @@ void	ft_print_hex_uc(int n)
 
 	hexstring(hex);
 	str = (char *) malloc ((ft_len(n) + 1) * sizeof(char));
-	j = ft_len(add);
+	j = ft_len(n);
 	str[j] = 0;
 	while (n)
 	{
