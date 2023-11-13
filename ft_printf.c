@@ -6,12 +6,11 @@
 /*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 12:23:10 by naadou            #+#    #+#             */
-/*   Updated: 2023/11/11 20:40:35 by naadou           ###   ########.fr       */
+/*   Updated: 2023/11/13 12:51:30 by naadou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "/Users/naadou/Desktop/libft/libft.h"
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_printf(const char *s, ...)
 {
@@ -55,7 +54,7 @@ int	ft_printf(const char *s, ...)
 // int main()
 // {
 // 	int a = 10;
-// 	ft_printf("it fucking worked let's go :%x", 42);
+// 	ft_printf("it fucking worked let's go :%p", &a);
 // }
 
 //cc ft_printf.c ft_print_hex_lc.c ft_print_hex_uc.c ft_printadd.c ft_u_putnbr.c /Users/naadou/Desktop/libft/ft_putchar_fd.c /Users/naadou/Desktop/libft/ft_putnbr_fd.c /Users/naadou/Desktop/libft/ft_putstr_fd.c /Users/naadou/Desktop/libft/ft_strlen.c /Users/naadou/Desktop/libft/ft_strncmp.c

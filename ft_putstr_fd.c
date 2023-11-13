@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_u_putnbr.c                                      :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/11 18:24:22 by naadou            #+#    #+#             */
-/*   Updated: 2023/11/13 12:45:55 by naadou           ###   ########.fr       */
+/*   Created: 2023/11/02 20:49:04 by naadou            #+#    #+#             */
+/*   Updated: 2023/11/13 12:45:36 by naadou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "ft_printf.h"
 
-void	ft_u_putnbr_fd(unsigned int n, int fd)
+void	ft_putstr_fd(char *s, int fd)
 {
-	char	c;
+	int	i;
 
-	if (n > 9)
-		ft_putnbr_fd(n / 10, fd);
-	c = (n % 10) + 48;
-	ft_putchar_fd(c, fd);
+	if (fd < 0 || !s)
+		return ;
+	i = ft_strlen(s);
+	write (fd, s, i);
 }

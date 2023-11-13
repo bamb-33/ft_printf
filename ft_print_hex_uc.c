@@ -6,12 +6,11 @@
 /*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 19:56:06 by naadou            #+#    #+#             */
-/*   Updated: 2023/11/11 20:21:48 by naadou           ###   ########.fr       */
+/*   Updated: 2023/11/13 12:45:50 by naadou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "/Users/naadou/Desktop/libft/libft.h"
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 static size_t	ft_len(int n)
 {

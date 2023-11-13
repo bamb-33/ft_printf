@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/11 16:00:59 by naadou            #+#    #+#             */
-/*   Updated: 2023/11/11 20:30:14 by naadou           ###   ########.fr       */
+/*   Created: 2023/10/30 20:33:51 by naadou            #+#    #+#             */
+/*   Updated: 2023/11/13 12:48:46 by naadou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "ft_printf.h"
 
-# include "/Users/naadou/Desktop/libft/libft.h"
-# include <stdarg.h> 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stddef.h>
+size_t	ft_strlen(const char *s)
+{
+	int	i;
 
-void	ft_print_hex_uc(int n);
-void	ft_print_hex_lc(int n);
-void	ft_printadd(void *p);
-void	ft_u_putnbr_fd(unsigned int n, int fd);
-
-#endif
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}

@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_u_putnbr.c                                      :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/11 18:24:22 by naadou            #+#    #+#             */
-/*   Updated: 2023/11/13 12:45:55 by naadou           ###   ########.fr       */
+/*   Created: 2023/10/31 16:40:43 by naadou            #+#    #+#             */
+/*   Updated: 2023/11/13 12:48:41 by naadou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_u_putnbr_fd(unsigned int n, int fd)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	char	c;
+	size_t	i;
 
-	if (n > 9)
-		ft_putnbr_fd(n / 10, fd);
-	c = (n % 10) + 48;
-	ft_putchar_fd(c, fd);
+	i = 0;
+	if (n == 0)
+		return (0);
+	while (s1[i] == s2[i] && s1[i] && s2[i] && i < n - 1)
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
