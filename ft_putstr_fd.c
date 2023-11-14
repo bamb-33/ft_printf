@@ -6,19 +6,25 @@
 /*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 20:49:04 by naadou            #+#    #+#             */
-/*   Updated: 2023/11/13 12:45:36 by naadou           ###   ########.fr       */
+/*   Updated: 2023/11/14 18:52:05 by naadou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "ft_printf.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	ft_putstr_fd(char *s, int fd)
 {
 	int	i;
 
-	if (fd < 0 || !s)
-		return ;
+	if (fd < 0)
+		return (0);
+	if (!s)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
 	i = ft_strlen(s);
 	write (fd, s, i);
+	return (i);
 }

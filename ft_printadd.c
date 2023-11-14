@@ -6,23 +6,25 @@
 /*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 13:17:29 by naadou            #+#    #+#             */
-/*   Updated: 2023/11/13 12:45:48 by naadou           ###   ########.fr       */
+/*   Updated: 2023/11/14 19:58:59 by naadou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static size_t	ft_len(unsigned long n)
+static int	ft_len(unsigned long int n)
 {
 	size_t	i;
 
 	i = 0;
+	if (n <= 0)
+		i++;
 	while (n)
 	{
 		n /= 16;
 		i++;
 	}
-	return (i + 2);
+	return (i);
 }
 
 static void	hexstring(char *str)
@@ -43,28 +45,24 @@ static void	hexstring(char *str)
 	str[i] = 0;
 }
 
-void	ft_printadd(void *p)
+static void	hex_print(unsigned long int n, char *hex)
 {
-	int				i;
-	int				j;
-	unsigned long	add;
-	char			*str;
-	char			hex[17];
+	char	c;
 
-	add = (unsigned long) p;
-	str = (char *) malloc ((ft_len(add) + 1) * sizeof(char));
+	if (n >= 16)
+		hex_print(n / 16, hex);
+	c = hex[n % 16];
+	ft_putchar_fd(c, 1);
+}
+
+int	ft_printadd(void *p)
+{
+	unsigned long int	add;
+	char				hex[17];
+
 	hexstring(hex);
-	j = ft_len(add);
-	str[j] = 0;
-	while (add)
-	{
-		i = add % 16;
-		str[j - 1] = hex[i];
-		add /= 16;
-		j--;
-	}
-	str[j -1] = 'x';
-	j--;
-	str[j - 1] = 48;
-	ft_putstr_fd(str, 1);
+	add = (unsigned long int) p;
+	ft_putstr_fd("0x", 1);
+	hex_print(add, hex);
+	return (ft_len((unsigned long int) p) + 2);
 }

@@ -6,17 +6,19 @@
 /*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 19:56:06 by naadou            #+#    #+#             */
-/*   Updated: 2023/11/13 12:45:50 by naadou           ###   ########.fr       */
+/*   Updated: 2023/11/14 18:29:01 by naadou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static size_t	ft_len(int n)
+static int	ft_len(unsigned int n)
 {
 	size_t	i;
 
 	i = 0;
+	if (n == 0)
+		i++;
 	while (n)
 	{
 		n /= 16;
@@ -43,23 +45,23 @@ static void	hexstring(char *str)
 	str[i] = 0;
 }
 
-void	ft_print_hex_uc(int n)
+static void	hex_print(unsigned int n, char *hex)
 {
-	char	*str;
-	char	hex[17];
-	int		i;
-	int		j;
+	char	c;
 
+	if (n >= 16)
+		hex_print(n / 16, hex);
+	c = hex[n % 16];
+	ft_putchar_fd(c, 1);
+}
+
+int	ft_print_hex_uc(unsigned int n)
+{
+	char	hex[17];
+	int		len;
+
+	len = n;
 	hexstring(hex);
-	str = (char *) malloc ((ft_len(n) + 1) * sizeof(char));
-	j = ft_len(n);
-	str[j] = 0;
-	while (n)
-	{
-		i = n % 16;
-		str[j - 1] = hex[i];
-		n /= 16;
-		j--;
-	}
-	ft_putstr_fd(str, 1);
+	hex_print(n, hex);
+	return (ft_len(len));
 }

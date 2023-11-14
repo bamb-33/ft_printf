@@ -6,19 +6,36 @@
 /*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 20:57:56 by naadou            #+#    #+#             */
-/*   Updated: 2023/11/13 12:45:34 by naadou           ###   ########.fr       */
+/*   Updated: 2023/11/14 17:59:07 by naadou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "ft_printf.h"
 
-void	ft_putnbr_fd(int n, int fd)
+static int	ft_len(int n)
+{
+	size_t	i;
+
+	i = 0;
+	if (n <= 0)
+		i++;
+	while (n)
+	{
+		n /= 10;
+		i++;
+	}
+	return (i);
+}
+
+int	ft_putnbr_fd(int n, int fd)
 {
 	char	c;
+	int		len;
 
+	len = n;
 	if (fd < 0)
-		return ;
+		return (0);
 	if (n == -2147483648)
 		write(fd, "-2147483648", 11);
 	else if (n < 0)
@@ -34,4 +51,5 @@ void	ft_putnbr_fd(int n, int fd)
 		c = (n % 10) + 48;
 		ft_putchar_fd(c, fd);
 	}
+	return (ft_len(len));
 }

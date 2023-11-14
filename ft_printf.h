@@ -6,7 +6,7 @@
 /*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 16:00:59 by naadou            #+#    #+#             */
-/*   Updated: 2023/11/13 12:48:12 by naadou           ###   ########.fr       */
+/*   Updated: 2023/11/14 19:54:57 by naadou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,17 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stddef.h>
+# include <stdio.h> 
 
-void	ft_print_hex_uc(int n);
-void	ft_print_hex_lc(int n);
-void	ft_printadd(void *p);
-int		ft_printf(const char *s, ...);
-void	ft_putchar_fd(char c, int fd);
-void	ft_putnbr_fd(int n, int fd);
-void	ft_putstr_fd(char *s, int fd);
-size_t	ft_strlen(const char *s);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-void	ft_u_putnbr_fd(unsigned int n, int fd);
+int				ft_print_hex_lc(unsigned int n);
+int				ft_print_hex_uc(unsigned int n);
+int				ft_printadd(void *p);
+int				ft_printf(const char *s, ...);
+int				ft_putchar_fd(char c, int fd);
+int				ft_putnbr_fd(int n, int fd);
+int				ft_putstr_fd(char *s, int fd);
+size_t			ft_strlen(const char *s);
+int				ft_strncmp(const char *s1, const char *s2, size_t n);
+unsigned int	ft_u_putnbr_fd(unsigned int n, int fd);
 
 #endif

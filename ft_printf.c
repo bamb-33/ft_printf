@@ -5,40 +5,54 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/11 12:23:10 by naadou            #+#    #+#             */
-/*   Updated: 2023/11/13 12:51:30 by naadou           ###   ########.fr       */
+/*   Created: 2023/11/14 15:35:18 by naadou            #+#    #+#             */
+/*   Updated: 2023/11/14 19:59:31 by naadou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+int	print(const char *s, va_list args)
+{
+	int	len;
+
+	len = 0;
+	if (ft_strncmp(s, "%c", 2) == 0)
+		len = ft_putchar_fd(va_arg(args, int), 1);
+	else if (ft_strncmp(s, "%s", 2) == 0)
+		len = ft_putstr_fd(va_arg(args, char *), 1);
+	else if (ft_strncmp(s, "%p", 2) == 0)
+		len = ft_printadd(va_arg(args, void *));
+	else if (ft_strncmp(s, "%d", 2) == 0)
+		len = ft_putnbr_fd(va_arg(args, int), 1);
+	else if (ft_strncmp(s, "%i", 2) == 0)
+		len = ft_putnbr_fd(va_arg(args, int), 1);
+	else if (ft_strncmp(s, "%u", 2) == 0)
+		len = ft_u_putnbr_fd(va_arg(args, unsigned int), 1);
+	else if (ft_strncmp(s, "%x", 2) == 0)
+		len = ft_print_hex_lc(va_arg(args, int));
+	else if (ft_strncmp(s, "%X", 2) == 0)
+		len = ft_print_hex_uc(va_arg(args, int));
+	else if (ft_strncmp(s, "%%", 2) == 0)
+		len = ft_putchar_fd('%', 1);
+	return (len - 2);
+}
+
 int	ft_printf(const char *s, ...)
 {
 	va_list	args;
 	int		i;
+	int		j;
 
 	i = 0;
+	j = 0;
+	if (!s)
+		return (0);
 	va_start(args, s);
 	while (s[i])
 	{
-		if (ft_strncmp(&s[i], "%c", 2) == 0)
-			ft_putchar_fd(va_arg(args, int), 1);
-		else if (ft_strncmp(&s[i], "%s", 2) == 0)
-			ft_putstr_fd(va_arg(args, char *), 1);
-		else if (ft_strncmp(&s[i], "%p", 2) == 0)
-			ft_printadd(va_arg(args, void *));
-		else if (ft_strncmp(&s[i], "%d", 2) == 0)
-			ft_putnbr_fd(va_arg(args, int), 1);
-		else if (ft_strncmp(&s[i], "%i", 2) == 0)
-			ft_putnbr_fd(va_arg(args, int), 1);
-		else if (ft_strncmp(&s[i], "%u", 2) == 0)
-			ft_u_putnbr_fd(va_arg(args, unsigned int), 1);
-		else if (ft_strncmp(&s[i], "%x", 2) == 0)
-			ft_print_hex_lc(va_arg(args, int));
-		else if (ft_strncmp(&s[i], "%X", 2) == 0)
-			ft_print_hex_uc(va_arg(args, int));
-		else if (ft_strncmp(&s[i], "%%", 2) == 0)
-			ft_putchar_fd('%', 1);
+		if (s[i] == '%')
+			j += print(&s[i], args);
 		else
 		{
 			ft_putchar_fd(s[i], 1);
@@ -48,13 +62,13 @@ int	ft_printf(const char *s, ...)
 		i += 2;
 	}
 	va_end(args);
-	return (0);
+	return (i + j);
 }
 
 // int main()
 // {
-// 	int a = 10;
-// 	ft_printf("it fucking worked let's go :%p", &a);
+// 	// int a = 10;
+// 	ft_printf("%d\n", ft_printf("%p\n", (void *)-14523));
+// 	printf("%d\n", printf("%p\n", (void *)-14523));
+// 	//ft_printf("%p\n", "");
 // }
-
-//cc ft_printf.c ft_print_hex_lc.c ft_print_hex_uc.c ft_printadd.c ft_u_putnbr.c /Users/naadou/Desktop/libft/ft_putchar_fd.c /Users/naadou/Desktop/libft/ft_putnbr_fd.c /Users/naadou/Desktop/libft/ft_putstr_fd.c /Users/naadou/Desktop/libft/ft_strlen.c /Users/naadou/Desktop/libft/ft_strncmp.c
