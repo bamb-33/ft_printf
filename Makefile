@@ -1,7 +1,7 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-LIBFT_PRINTF_FILES = ft_print_hex_lc.c ft_print_hex_uc.c ft_printadd.c ft_printf.c ft_u_putnbr.c \
+LIBFT_PRINTF_FILES = ft_print_hex.c ft_printadd.c ft_printf.c ft_u_putnbr.c \
 						ft_strncmp.c ft_putchar_fd.c ft_putstr_fd.c ft_putnbr_fd.c ft_strlen.c
 O_LIBFT_PRINTF_FILES = $(LIBFT_PRINTF_FILES:.c=.o)
 NAME = libftprintf.a

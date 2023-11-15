@@ -6,7 +6,7 @@
 /*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 16:00:59 by naadou            #+#    #+#             */
-/*   Updated: 2023/11/14 19:54:57 by naadou           ###   ########.fr       */
+/*   Updated: 2023/11/15 18:58:12 by naadou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@
 # include <stddef.h>
 # include <stdio.h> 
 
-int				ft_print_hex_lc(unsigned int n);
-int				ft_print_hex_uc(unsigned int n);
+int				ft_print_hex(unsigned int n, int c);
 int				ft_printadd(void *p);
 int				ft_printf(const char *s, ...);
 int				ft_putchar_fd(char c, int fd);

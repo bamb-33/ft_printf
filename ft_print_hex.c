@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_hex_uc.c                                  :+:      :+:    :+:   */
+/*   ft_print_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/11 19:56:06 by naadou            #+#    #+#             */
-/*   Updated: 2023/11/14 18:29:01 by naadou           ###   ########.fr       */
+/*   Created: 2023/11/11 19:47:08 by naadou            #+#    #+#             */
+/*   Updated: 2023/11/15 19:01:35 by naadou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,6 @@ static int	ft_len(unsigned int n)
 	return (i);
 }
 
-static void	hexstring(char *str)
-{
-	int	i;
-	int	j;
-
-	j = 48;
-	i = 0;
-	while (i < 16)
-	{
-		if (j == 58)
-			j = 65;
-		str[i] = j;
-		i++;
-		j++;
-	}
-	str[i] = 0;
-}
-
 static void	hex_print(unsigned int n, char *hex)
 {
 	char	c;
@@ -55,13 +37,16 @@ static void	hex_print(unsigned int n, char *hex)
 	ft_putchar_fd(c, 1);
 }
 
-int	ft_print_hex_uc(unsigned int n)
+int	ft_print_hex(unsigned int n, int c)
 {
-	char	hex[17];
+	char	*hex;
 	int		len;
 
 	len = n;
-	hexstring(hex);
+	if (c == 120)
+		hex = "0123456789abcdef";
+	if (c == 88)
+		hex = "0123456789ABCDEF";
 	hex_print(n, hex);
 	return (ft_len(len));
 }

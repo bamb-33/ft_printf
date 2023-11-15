@@ -6,7 +6,7 @@
 /*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 15:35:18 by naadou            #+#    #+#             */
-/*   Updated: 2023/11/14 19:59:31 by naadou           ###   ########.fr       */
+/*   Updated: 2023/11/15 19:31:54 by naadou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,12 @@ int	print(const char *s, va_list args)
 		len = ft_putstr_fd(va_arg(args, char *), 1);
 	else if (ft_strncmp(s, "%p", 2) == 0)
 		len = ft_printadd(va_arg(args, void *));
-	else if (ft_strncmp(s, "%d", 2) == 0)
-		len = ft_putnbr_fd(va_arg(args, int), 1);
-	else if (ft_strncmp(s, "%i", 2) == 0)
+	else if (ft_strncmp(s, "%d", 2) == 0 || ft_strncmp(s, "%i", 2) == 0)
 		len = ft_putnbr_fd(va_arg(args, int), 1);
 	else if (ft_strncmp(s, "%u", 2) == 0)
 		len = ft_u_putnbr_fd(va_arg(args, unsigned int), 1);
-	else if (ft_strncmp(s, "%x", 2) == 0)
-		len = ft_print_hex_lc(va_arg(args, int));
-	else if (ft_strncmp(s, "%X", 2) == 0)
-		len = ft_print_hex_uc(va_arg(args, int));
+	else if (ft_strncmp(s, "%x", 2) == 0 || ft_strncmp(s, "%X", 2) == 0)
+		len = ft_print_hex(va_arg(args, int), s[1]);
 	else if (ft_strncmp(s, "%%", 2) == 0)
 		len = ft_putchar_fd('%', 1);
 	return (len - 2);
@@ -46,8 +42,6 @@ int	ft_printf(const char *s, ...)
 
 	i = 0;
 	j = 0;
-	if (!s)
-		return (0);
 	va_start(args, s);
 	while (s[i])
 	{
@@ -67,8 +61,9 @@ int	ft_printf(const char *s, ...)
 
 // int main()
 // {
-// 	// int a = 10;
-// 	ft_printf("%d\n", ft_printf("%p\n", (void *)-14523));
-// 	printf("%d\n", printf("%p\n", (void *)-14523));
+// 	int a = 10;
+// 	//ft_printf("%d\n", "hello");
+// 	ft_printf("%d\n", ft_printf("%d\n", 8765));
+// 	printf("%d\n", printf("%d\n", 8264265));
 // 	//ft_printf("%p\n", "");
 // }
