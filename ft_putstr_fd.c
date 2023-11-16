@@ -6,7 +6,7 @@
 /*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 20:49:04 by naadou            #+#    #+#             */
-/*   Updated: 2023/11/14 18:52:05 by naadou           ###   ########.fr       */
+/*   Updated: 2023/11/16 15:51:39 by naadou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int	ft_putstr_fd(char *s, int fd)
 {
 	int	i;
 
-	if (fd < 0)
-		return (0);
 	if (!s)
 	{
 		write(1, "(null)", 6);
