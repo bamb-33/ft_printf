@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 20:49:04 by naadou            #+#    #+#             */
-/*   Updated: 2023/11/14 18:52:05 by naadou           ###   ########.fr       */
+/*   Updated: 2023/11/16 23:49:26 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 int	ft_putstr_fd(char *s, int fd)
 {
 	int	i;
+	int	j;
 
 	if (fd < 0)
 		return (0);
@@ -25,6 +26,8 @@ int	ft_putstr_fd(char *s, int fd)
 		return (6);
 	}
 	i = ft_strlen(s);
-	write (fd, s, i);
+	j = write (fd, s, i);
+	if (j == -1)
+		return (-1);
 	return (i);
 }

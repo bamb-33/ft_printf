@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printadd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 13:17:29 by naadou            #+#    #+#             */
-/*   Updated: 2023/11/15 19:30:34 by naadou           ###   ########.fr       */
+/*   Updated: 2023/11/16 22:42:11 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,31 @@ static int	ft_len(unsigned long int n)
 	return (i);
 }
 
-static void	hex_print(unsigned long int n, char *hex)
+static void	hex_print(unsigned long int n, char *hex, int *i)
 {
 	char	c;
 
 	if (n >= 16)
-		hex_print(n / 16, hex);
+		hex_print(n / 16, hex, i);
 	c = hex[n % 16];
-	ft_putchar_fd(c, 1);
+	*i = ft_putchar_fd(c, 1);
+	if (*i == -1)
+		return ;
 }
 
 int	ft_printadd(void *p)
 {
 	unsigned long int	add;
+	int					i;
 	char				*hex;
 
 	hex = "0123456789abcdef";
 	add = (unsigned long int) p;
-	ft_putstr_fd("0x", 1);
-	hex_print(add, hex);
+	i = ft_putstr_fd("0x", 1);
+	if (i == -1)
+		return (-1);
+	hex_print(add, hex, &i);
+	if (i == -1)
+		return (-1);
 	return (ft_len((unsigned long int) p) + 2);
 }

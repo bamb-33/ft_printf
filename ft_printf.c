@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 15:35:18 by naadou            #+#    #+#             */
-/*   Updated: 2023/11/15 19:31:54 by naadou           ###   ########.fr       */
+/*   Updated: 2023/11/16 23:47:45 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print(const char *s, va_list args)
+int	print(const char *s, va_list args, int *i)
 {
 	int	len;
 
@@ -31,6 +31,8 @@ int	print(const char *s, va_list args)
 		len = ft_print_hex(va_arg(args, int), s[1]);
 	else if (ft_strncmp(s, "%%", 2) == 0)
 		len = ft_putchar_fd('%', 1);
+	if (len == -1)
+		*i = len;
 	return (len - 2);
 }
 
@@ -46,24 +48,26 @@ int	ft_printf(const char *s, ...)
 	while (s[i])
 	{
 		if (s[i] == '%')
-			j += print(&s[i], args);
+			j += print(&s[i], args, &i);
 		else
 		{
 			ft_putchar_fd(s[i], 1);
 			i++;
 			continue ;
 		}
+		if (i == -1)
+			return (-1);
 		i += 2;
 	}
 	va_end(args);
 	return (i + j);
 }
 
-// int main()
-// {
-// 	int a = 10;
-// 	//ft_printf("%d\n", "hello");
-// 	ft_printf("%d\n", ft_printf("%d\n", 8765));
-// 	printf("%d\n", printf("%d\n", 8264265));
-// 	//ft_printf("%p\n", "");
-// }
+int main()
+{
+	// int a = 10;
+	//ft_printf("%d\n", "hello");
+	ft_printf("%d\n", ft_printf("%s\n", "hello"));
+	// printf("%d\n", printf("%d\n", 8264265));
+	//ft_printf("%p\n", "");
+}
