@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:24:22 by naadou            #+#    #+#             */
-/*   Updated: 2023/11/18 21:51:07 by marvin           ###   ########.fr       */
+/*   Updated: 2023/11/18 22:22:15 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ unsigned int	ft_u_putnbr_fd(unsigned int n, int fd)
 	int				i;
 
 	len = n;
-	if (n > 9)
+	if (n > 9)   
 		ft_putnbr_fd(n / 10, fd);
 	c = (n % 10) + 48;
 	i = ft_putchar_fd(c, fd);
