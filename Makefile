@@ -11,8 +11,8 @@ all: $(NAME)
 $(NAME): $(O_LIBFT_PRINTF_FILES)
 	ar -rcs $(NAME) $(O_LIBFT_PRINTF_FILES)
 
-$(O_LIBFT_PRINTF_FILES): $(LIBFT_PRINTF_FILES)
-	$(CC) $(CFLAGS) -c $^
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(O_LIBFT_PRINTF_FILES)
