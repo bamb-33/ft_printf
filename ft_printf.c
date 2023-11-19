@@ -6,7 +6,7 @@
 /*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 21:55:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/11/19 20:11:03 by naadou           ###   ########.fr       */
+/*   Updated: 2023/11/19 21:46:47 by naadou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	print(const char *s, va_list args, int *i)
 	else if (ft_strncmp(s, "%%", 2) == 0)
 		len = ft_putchar_fd('%', 1);
 	if (len == -1)
-		*i = len;
+		*i = -1;
 	return (len - 2);
 }
 
@@ -45,14 +45,16 @@ int	ft_printf(const char *s, ...)
 	i = 0;
 	j = 0;
 	va_start(args, s);
+	if (!s)
+		return (-1);
 	while (s[i])
 	{
 		if (s[i] == '%')
 			j += print(&s[i], args, &i);
 		else
 		{
-			ft_putchar_fd(s[i], 1);
-			i++;
+			if (ft_putchar_fd(s[i++], 1) == -1)
+				return (-1);
 			continue ;
 		}
 		if (i == -1)
@@ -67,7 +69,7 @@ int	ft_printf(const char *s, ...)
 	// {
 	// 	// int a = 10;
 	// 	//ft_printf("%d\n", "hello");
-	// 	ft_printf("%d\n", ft_printf("%x\n", -1));
-	// 	printf("%d\n", printf("%x\n", -1));
+	// 	ft_printf("%d\n", ft_printf(" %s\n", "can it handle \t and \n?"));
+	// 	//printf("%d\n", printf(NULL));
 	// 	//ft_printf("%p\n", "");
 	// }
