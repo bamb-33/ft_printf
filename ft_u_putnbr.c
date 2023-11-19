@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_u_putnbr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:24:22 by naadou            #+#    #+#             */
-/*   Updated: 2023/11/18 22:22:15 by marvin           ###   ########.fr       */
+/*   Updated: 2023/11/19 13:18:00 by naadou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,25 @@ unsigned int	ft_u_putnbr_fd(unsigned int n, int fd)
 {
 	char			c;
 	unsigned int	len;
+	unsigned int	store;
 	int				i;
 
-	len = n;
-	if (n > 9)   
-		ft_putnbr_fd(n / 10, fd);
-	c = (n % 10) + 48;
-	i = ft_putchar_fd(c, fd);
-	if (i == -1)
-		return (-1);
-	return (ft_len(len));
+	i = 1;
+	store = n;
+	len = ft_len(n);
+	while (len > 1)
+	{
+		i = (i * 9) + i;
+		len --;
+	}
+	len = ft_len(n);
+	while (len)
+	{
+		c = ((n / i) % 10) + 48;
+		if (ft_putchar_fd(c, fd) == -1)
+			return (-1);
+		i = i / 10;
+		len --;
+	}
+	return (ft_len(store));
 }

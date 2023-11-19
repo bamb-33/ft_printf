@@ -6,7 +6,7 @@
 /*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 16:00:59 by naadou            #+#    #+#             */
-/*   Updated: 2023/11/16 16:02:51 by naadou           ###   ########.fr       */
+/*   Updated: 2023/11/19 11:59:31 by naadou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stddef.h>
+# include <stdio.h>
 
 int				ft_print_hex(unsigned int n, int c);
 int				ft_printadd(void *p);
