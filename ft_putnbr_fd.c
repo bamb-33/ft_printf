@@ -6,7 +6,7 @@
 /*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 20:57:56 by naadou            #+#    #+#             */
-/*   Updated: 2023/11/19 13:15:22 by naadou           ###   ########.fr       */
+/*   Updated: 2023/11/19 20:53:50 by naadou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,53 +28,48 @@ static int	ft_len(int n)
 	return (i);
 }
 
-int	ft_putnbr_fd(int n, int fd)
+static char	*f(char *str, int n, int j)
 {
-	char	c;
-	int		len;
-	int		i;
-	int		store;
+	int	i;
 
-	if (n < 0)
+	j += ft_len(n);
+	str[j] = 0;
+	if (n == 0)
+		str[0] = '0';
+	while (n)
 	{
-		ft_putchar_fd('-', fd);
-		n -= -1;
+		i = (n % 10) + 48;
+		str[j - 1] = i;
+		n /= 10;
+		j--;
 	}
-	i = 1;
-	store = n;
-	len = ft_len(n);
-	while (len > 1)
-	{
-		i = (i * 9) + i;
-		len --;
-	}
-	len = ft_len(n);
-	while (len)
-	{
-		c = ((n / i) % 10) + 48;
-		if (ft_putchar_fd(c, fd) == -1)
-			return (-1);
-		i = i / 10;
-		len --;
-	}
-	return (ft_len(store));
+	return (str);
 }
 
-	// len = n;
-	// if (n == -2147483648)
-	// 	write(fd, "-2147483648", 11);
-	// else if (n < 0)
-	// {
-	// 	write (fd, "-", 1);
-	// 	n *= -1;
-	// 	ft_putnbr_fd(n, fd);
-	// }
-	// else
-	// {
-	// 	if (n > 9)
-	// 		ft_putnbr_fd(n / 10, fd);
-	// 	c = (n % 10) + 48;
-	// 	i = ft_putchar_fd(c, fd);
-	// 	if (i == -1)
-	// 		return (-1);
-	// }
+int	ft_putnbr_fd(int n, int fd)
+{
+	char	*str;
+	int		i;
+	int		j;
+
+	j = 0;
+	if (n == -2147483648)
+		return (ft_putstr_fd("-2147483648", fd));
+	if (n < 0)
+	{
+		str = (char *) malloc ((ft_len(n) + 2) * sizeof(char));
+		if (!str)
+			return (-1);
+		str[0] = '-';
+		n *= -1;
+		j++;
+	}
+	else
+		str = (char *) malloc ((ft_len(n) + 1) * sizeof(char));
+	if (!str)
+		return (-1);
+	str = f(str, n, j);
+	i = ft_putstr_fd(str, fd);
+	free (str);
+	return (i);
+}
