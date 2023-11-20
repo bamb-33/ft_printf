@@ -6,13 +6,13 @@
 /*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 21:55:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/11/19 21:46:47 by naadou           ###   ########.fr       */
+/*   Updated: 2023/11/20 12:22:10 by naadou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print(const char *s, va_list args, int *i)
+static int	print(const char *s, va_list args, int *i)
 {
 	int	len;
 
