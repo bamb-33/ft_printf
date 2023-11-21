@@ -6,11 +6,21 @@
 /*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 21:55:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/11/20 12:22:10 by naadou           ###   ########.fr       */
+/*   Updated: 2023/11/21 18:59:48 by naadou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int	read_error(int i)
+{
+	if (i == -1)
+	{
+		va_end(args);
+		return (-1);
+	}
+	return (1);
+}
 
 static int	print(const char *s, va_list args, int *i)
 {
@@ -31,6 +41,10 @@ static int	print(const char *s, va_list args, int *i)
 		len = ft_print_hex(va_arg(args, int), s[1]);
 	else if (ft_strncmp(s, "%%", 2) == 0)
 		len = ft_putchar_fd('%', 1);
+	else if (s[1])
+		len = ft_putchar_fd(s[1], 1);
+	else if (!s[1])
+		len = 0;
 	if (len == -1)
 		*i = -1;
 	return (len - 2);
@@ -45,8 +59,6 @@ int	ft_printf(const char *s, ...)
 	i = 0;
 	j = 0;
 	va_start(args, s);
-	if (!s)
-		return (-1);
 	while (s[i])
 	{
 		if (s[i] == '%')
@@ -57,7 +69,7 @@ int	ft_printf(const char *s, ...)
 				return (-1);
 			continue ;
 		}
-		if (i == -1)
+		if (read_error(i) == -1)
 			return (-1);
 		i += 2;
 	}
@@ -69,7 +81,8 @@ int	ft_printf(const char *s, ...)
 	// {
 	// 	// int a = 10;
 	// 	//ft_printf("%d\n", "hello");
-	// 	ft_printf("%d\n", ft_printf(" %s\n", "can it handle \t and \n?"));
+	// 	ft_printf("\nsize: %d\n", ft_printf("%hh%"));
+	// 	printf("\nsize: %d\n", printf("%hh"));
 	// 	//printf("%d\n", printf(NULL));
 	// 	//ft_printf("%p\n", "");
 	// }
