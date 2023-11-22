@@ -6,13 +6,13 @@
 /*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 21:55:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/11/21 18:59:48 by naadou           ###   ########.fr       */
+/*   Updated: 2023/11/22 09:39:50 by naadou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	read_error(int i)
+int	read_error(int i, va_list args)
 {
 	if (i == -1)
 	{
@@ -43,8 +43,6 @@ static int	print(const char *s, va_list args, int *i)
 		len = ft_putchar_fd('%', 1);
 	else if (s[1])
 		len = ft_putchar_fd(s[1], 1);
-	else if (!s[1])
-		len = 0;
 	if (len == -1)
 		*i = -1;
 	return (len - 2);
@@ -61,6 +59,8 @@ int	ft_printf(const char *s, ...)
 	va_start(args, s);
 	while (s[i])
 	{
+		if (!s[i + 1] && s[i] == '%')
+			return (i + j);
 		if (s[i] == '%')
 			j += print(&s[i], args, &i);
 		else
@@ -69,7 +69,7 @@ int	ft_printf(const char *s, ...)
 				return (-1);
 			continue ;
 		}
-		if (read_error(i) == -1)
+		if (read_error(i, args) == -1)
 			return (-1);
 		i += 2;
 	}
@@ -77,12 +77,12 @@ int	ft_printf(const char *s, ...)
 	return (i + j);
 }
 
-	// int main()
-	// {
-	// 	// int a = 10;
-	// 	//ft_printf("%d\n", "hello");
-	// 	ft_printf("\nsize: %d\n", ft_printf("%hh%"));
-	// 	printf("\nsize: %d\n", printf("%hh"));
-	// 	//printf("%d\n", printf(NULL));
-	// 	//ft_printf("%p\n", "");
-	// }
+	int main()
+	{
+		// int a = 10;
+		//ft_printf("%d\n", "hello");
+		printf("%d", ft_printf("%"));
+		// printf("%d", printf("%"));
+		//printf("%d\n", printf(NULL));
+		//ft_printf("%p\n", "");
+	}
