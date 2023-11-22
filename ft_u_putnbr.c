@@ -6,13 +6,13 @@
 /*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:24:22 by naadou            #+#    #+#             */
-/*   Updated: 2023/11/19 20:24:15 by naadou           ###   ########.fr       */
+/*   Updated: 2023/11/22 14:07:40 by naadou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static size_t	ft_len(unsigned int n)
+static int	ft_len(unsigned long n)
 {
 	size_t	i;
 
@@ -27,7 +27,7 @@ static size_t	ft_len(unsigned int n)
 	return (i);
 }
 
-unsigned int	ft_u_putnbr_fd(unsigned int n, int fd)
+unsigned long	ft_u_putnbr_fd(unsigned long n, int fd)
 {
 	char	*str;
 	int		i;

@@ -6,13 +6,13 @@
 /*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 21:55:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/11/22 09:39:50 by naadou           ###   ########.fr       */
+/*   Updated: 2023/11/22 14:09:34 by naadou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	read_error(int i, va_list args)
+static int	read_error(int i, va_list args)
 {
 	if (i == -1)
 	{
@@ -77,12 +77,12 @@ int	ft_printf(const char *s, ...)
 	return (i + j);
 }
 
-	int main()
-	{
-		// int a = 10;
-		//ft_printf("%d\n", "hello");
-		printf("%d", ft_printf("%"));
-		// printf("%d", printf("%"));
-		//printf("%d\n", printf(NULL));
-		//ft_printf("%p\n", "");
-	}
+	// int main()
+	// {
+	// 	// int a = 10;
+	// 	//ft_printf("%d\n", "hello");
+	// 	printf("%d", ft_printf("%x\n", SIZE_MAX));
+	// 	printf("%d", printf("%x\n", SIZE_MAX));
+	// 	//printf("%d\n", printf(NULL));
+	// 	//ft_printf("%p\n", "");
+	// }
