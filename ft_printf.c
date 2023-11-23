@@ -6,7 +6,7 @@
 /*   By: naadou <naadou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 21:55:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/11/22 14:09:34 by naadou           ###   ########.fr       */
+/*   Updated: 2023/11/23 11:00:33 by naadou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,3 @@ int	ft_printf(const char *s, ...)
 	va_end(args);
 	return (i + j);
 }
-
-	// int main()
-	// {
-	// 	// int a = 10;
-	// 	//ft_printf("%d\n", "hello");
-	// 	printf("%d", ft_printf("%x\n", SIZE_MAX));
-	// 	printf("%d", printf("%x\n", SIZE_MAX));
-	// 	//printf("%d\n", printf(NULL));
-	// 	//ft_printf("%p\n", "");
-	// }
